@@ -2,6 +2,7 @@ include AnimalsHelper
 
 class Animal < ActiveRecord::Base
   include ActionView::Helpers::AssetUrlHelper
+  before_validation :set_status
 
   has_many :adoptions
   has_many :users, through: :adoptions
@@ -29,7 +30,7 @@ class Animal < ActiveRecord::Base
     if !animal_images.empty?
       animal_images.first.image.standard.url
     else
-      "assets" + asset_url("animal_placeholder.png")
+      asset_path("animal_placeholder.png")
     end
   end
 
@@ -128,9 +129,9 @@ class Animal < ActiveRecord::Base
   def self.filter_animals_by_age(age)
     case age
     when 0
-      Animal.where(" strftime(date('now')) - strftime('%Y', date_of_birth) <== 1").where(status: [0, 1])
+      Animal.where(" strftime(date('now')) - strftime('%Y', date_of_birth) < 1").where(status: [0, 1])
     when 1
-      Animal.where(" strftime(date('now')) - strftime('%Y', date_of_birth) >= 1 AND strftime(date('now')) - strftime('%Y', date_of_birth) <==3").where(status: [0, 1])
+      Animal.where(" strftime(date('now')) - strftime('%Y', date_of_birth) >= 1 AND strftime(date('now')) - strftime('%Y', date_of_birth) <= 3").where(status: [0, 1])
     else
       Animal.where(" strftime(date('now')) - strftime('%Y', date_of_birth) >= 3").where(status: [0, 1])
     end
@@ -139,6 +140,7 @@ class Animal < ActiveRecord::Base
   def self.prepare_response(animals)
     response = []
     animals.each do |animal|
+      has_image = !animal.animal_images.empty?
       img_url = animal.first_image_url
       age = ""
       age_in_years = AnimalsHelper.age_in_years(animal.date_of_birth)
@@ -157,12 +159,16 @@ class Animal < ActiveRecord::Base
                else
                  "fa fa-mars boy-color"
                end
-      response.push('id': animal.id, 'name': animal.name, 'description': animal.description, 'img_url': img_url, 'age': age, 'gender': gender, 'danger': animal.endangered?)
+      response.push('id': animal.id, 'name': animal.name, 'description': animal.description, 'has_image': has_image, 'img_url': img_url, 'age': age, 'gender': gender, 'danger': animal.endangered?)
     end
     response
   end
 
   private
+
+  def set_status
+    self.status ||= 0
+  end
 
   def entry_date_after_birth
     if !entry_date.nil? && !date_of_birth.nil?

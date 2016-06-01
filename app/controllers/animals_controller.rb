@@ -16,8 +16,8 @@ class AnimalsController < ApplicationController
   def list
     @animals = Animal.all
     @shelter_animals = Animal.where(status: 0)
-    @adopted_animals = Animal.where(status: 1)
-    @ff_animals = Animal.where(status: 2)
+    @adopted_animals = Animal.where(status: 2)
+    @ff_animals = Animal.where(status: 1)
     render "animals/index_employees"
   end
 
@@ -81,13 +81,12 @@ class AnimalsController < ApplicationController
   # PATCH/PUT /animals/1.json
   def update
     @breed = nil
-    if animal_params[:animal_type] == "1"
-      @breed = Breed.where(id: params[:dog_breed_id]).first
-      @animal.breed = @breed
-    else
-      @breed = Breed.where(id: params[:cat_breed_id]).first
-      @animal.breed = @breed
-    end
+    @breed = if animal_params[:animal_type] == "1"
+               Breed.where(id: params[:dog_breed_id]).first
+             else
+               Breed.where(id: params[:cat_breed_id]).first
+             end
+    @animal.breed = @breed
     new_params = animal_params
     new_params[:breed_id] = @breed.id
     respond_to do |format|

@@ -3,7 +3,7 @@
 <div id="myCarousel" class="carousel slide">
   <div class="carousel-inner">
     <div class="item active">
-      <%= image_tag 'adoption_image.jpg'%>
+      <%= image_tag '/assets/images/adoption_image.jpg'%>
       <div class="container">
         <div class="carousel-caption">
           <h1>They need <i>YOU</i></h1>
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="item">
-      <%= image_tag 'donation_image.png'%>
+      <%= image_tag '/assets/images/donation_image.png'%>
       <div class="container">
         <div class="carousel-caption">
           <h1>Our cause</h1>
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="item">
-      <%= image_tag 'volunteer_image.jpg'%>
+      <%= image_tag '/assets/images/volunteer_image.jpg'%>
       <div class="container">
         <div class="carousel-caption">
           <h1>They need your <strong>Love</strong>!</h1>
@@ -46,19 +46,19 @@
   <!-- Three columns of text below the carousel -->
   <div class="row">
     <div class="span4">
-      <%= link_to image_tag('images_adopt.jpg', class:'img-circle', alt:'140x140', width: '140px', height: '140px', onmouseover: "this.src='assets/images_adopt_color.png'", onmouseout: "this.src='assets/images_adopt.jpg'") , animals_path%>
+      <%= link_to image_tag('/assets/images/images_adopt.jpg', class:'img-circle', alt:'Adopt a friend', width: '140px', height: '140px', onmouseover: "this.src='/assets/images/images_adopt_color.png'", onmouseout: "this.src='/assets/images/images_adopt.jpg'") , animals_path%>
       <h2>Adoptions</h2>
       <p>Every year thousands of dogs are abandoned by their owners, they don't know why that person, who they love most of all, is leaving them. They find themselves alone without food or care. We try to help all of them but it is impossible! Help us take care of an innocent soul! Our shelter is open 24/7 for adoptions, come visit! </p>
       <p><%= button_to 'Adopt', animals_path , class:'btn btn-large btn-primary', method:'get'%></p>
     </div><!-- /.span4 -->
     <div class="span4">
-      <%= link_to image_tag('images_donation.jpg', class:'img-circle', alt:'Donate now', width: '140px', height: '140px', onmouseover: "this.src='assets/donations-circle-red.png'", onmouseout: "this.src='assets/images_donation.jpg'"), user_donation_path%>
+      <%= link_to image_tag('/assets/images/images_donation.jpg', class:'img-circle', alt:'Donate now', width: '140px', height: '140px', onmouseover: "this.src='/assets/images/donations-circle-red.png'", onmouseout: "this.src='/assets/images/images_donation.jpg'"), user_donation_path%>
       <h2>Donations</h2>
         <p>These pets need all the help they can get. They are thousands so it's really hard to get the funds to give them a decent life. We aim to provide the best conditions for every single one, for that we need some help! They deserve our effort, find out how you can help or donate to our cause. </p>
       <p><%= button_to 'Donate', user_donation_path , class:'btn btn-large btn-primary', method:'get'%></p>
     </div><!-- /.span4 -->
     <div class="span4">
-      <%= link_to image_tag('images_volunteer.png', class:'img-circle', alt:'Donate now', width: '140px', height: '140px', onmouseover: "this.src='assets/images_volunteer_color.png'", onmouseout: "this.src='assets/images_volunteer.png'"), user_volunteer_path %>
+      <%= link_to image_tag('/assets/images/images_volunteer.png', class:'img-circle', alt:'Donate now', width: '140px', height: '140px', onmouseover: "this.src='/assets/images/images_volunteer_color.png'", onmouseout: "this.src='/assets/images/images_volunteer.png'"), user_volunteer_path %>
       <h2>Volunteering</h2>
         <p>Our pets want nothing but to show the love they have for us. Unfortunatly we can't be with them all the time, so we rely on our volunteers to help us fullfill the needs of these beautiful creatures. Be part of the solution for them. You can apply here to work with us at your own schedule.</p>
       <p><%= button_to 'Volunteer', user_volunteer_path , class:'btn btn-large btn-primary', method:'get'%></p></p>
