@@ -95,7 +95,6 @@
         <!-- /menu footer buttons -->
 
         <div class="sidebar-footer hidden-small">
-            <%= link_to '', destroy_employee_session_path, method: :delete , class: 'fa fa-sign-out', title: 'Logout', data: { toggle: 'tooltip', placement: 'top', original_title: 'LogOut' }%>
           <%= link_to '', edit_employee_path(current_employee), class: 'fa fa-edit', title: 'Edit', data: { toggle: 'tooltip', placement: 'top', original_title: 'Edit' }%>
         </div>
         <!-- /menu footer buttons -->
@@ -111,6 +110,11 @@
             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
           </div>
           <ul class="nav navbar-nav navbar-right">
+
+            <li class="">
+              <%= link_to '', destroy_employee_session_path, method: :delete , class: 'fa fa-sign-out', title: 'Logout' %>
+            </li>
+
             <li role="presentation" class="dropdown">
               <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-envelope-o"></i>
@@ -141,9 +145,6 @@
                 </li>
               </ul>
             </li>
-
-
-
           </ul>
         </nav>
       </div>
