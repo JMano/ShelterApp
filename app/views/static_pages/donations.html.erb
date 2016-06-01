@@ -1,0 +1,41 @@
+
+<div class="container">
+  <h2 class="page-header">Donations <%= image_tag 'icon1.png' %></h2>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="box-style-green">
+        <h4 class="text-style-green"> Why Donate?</h4>
+        <p>Our institution relies directly on the help of good people to maintain our doors open! We need your help to continue our work and help the animals in need!
+      </div>
+      <br>
+      <div class="box-style-orange">
+        <h4 class="text-style-orange"> What Can I Donate?</h4>
+        <p>Almost everything is permitted, you can donate toys, clothes or accessories, food, money. Whatever you have that an animal could use it's safe to donate.</p>
+      </div>
+
+      <br>
+
+      <div class="box-style-blue">
+        <h4 class="text-style-blue"> How to Donate?</h4>
+        <p>You can go directly to our shelter and make your donation or you can fill in a request here and wait for someone to contact you, just click the button below.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 col-md-offset-4">
+          <br>
+          <%= button_to 'Donation Request', new_request_path , class:'btn btn-large btn-primary', method:'get'%>
+          <br>
+        </div>
+
+      </div>
+
+    </div>
+    <%= image_tag 'donation-image-page.png' , class: 'img-responsive'%>
+
+
+
+
+  </div>
+</div>
+
+</div>

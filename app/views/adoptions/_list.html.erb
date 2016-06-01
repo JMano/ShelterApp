@@ -1,0 +1,22 @@
+<div>
+  <div class="x_title">
+    <h2 id="name_list">User List &nbsp&nbsp&nbsp<small class="pull-right" id="info_list">(Select one to automatically fill adopter information)</small></h2>
+
+    <div class="clearfix"></div>
+  </div>
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active" id="tab1">
+      <a href="#adopters" aria-controls="adopters" role="tab" data-toggle="tab">Users</a>
+
+    </li>
+    <li role="presentation" id="tab2">
+      <a href="#animals" aria-controls="animals" role="tab" data-toggle="tab">Animals</a>
+    </li>
+  </ul>
+
+  <div class="tab-content" style="background-color: white;">
+    <div role="tabpanel" class="tab-pane active " id="adopters"><%= render 'user_list'%></div>
+    <div role="tabpanel" class="tab-pane" id="animals"><%= render 'animal_list'%></div>
+  </div>
+
+  </div>

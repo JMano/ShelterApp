@@ -1,0 +1,21 @@
+.ct-chart .ct-series.adoptions {
+    stroke: #DF2B07;
+}
+.ct-chart .ct-series.donations {
+    stroke: #DF9707;
+}
+.ct-chart .ct-series.arrivals {
+    stroke: #A30589;
+}
+.ct-chart .ct-series.volunteers {
+    stroke: #A31F05;
+}
+
+.ct-chart .ct-bar {
+    stroke-width: 13px;
+}
+
+.ct-label {
+    font-size: 10px;
+    font-weight: bold;
+}

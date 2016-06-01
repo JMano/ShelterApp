@@ -1,0 +1,62 @@
+<div class="right_col" role="main">
+
+
+  <div class="row">
+    <div class="col-md-8 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Volunteer Details</h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div class="col-md-11 col-md-offset-1">
+            <ul class="list-unstyled">
+              <li><h5><span class="fa fa-user" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp<strong>Name: </strong><%= @volunteer.user.name %></h5>
+              </li>
+              <li><h5><span class="fa fa-phone" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp<strong>Contact: </strong> <%= @volunteer.user.contact %></h5>
+              </li>
+              <li>
+                <h5><span class="fa fa-map-marker" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp&nbsp<strong>Address: </strong> <%= @volunteer.user.address %></h5>
+              </li>
+
+              <div class="clearfix"></div>
+              <li>
+                <h5><span class="fa fa-user-plus" style="font-size:15px;" aria-hidden="true"></span> <strong>Employee: </strong> <%= @volunteer.employee.name %></h5>
+                <h5><span class="fa fa-lock" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp&nbsp<strong>Employee Code: </strong> <%= @volunteer.employee.id %></h5>
+              </li>
+              <li>
+                <h5><span class="fa fa-calendar" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp<strong>Register Date: </strong> <%= pretty_date(@volunteer.created_at) %></h5>
+              </li>
+            </ul>
+
+          </div>
+
+          <div class="x_title">
+            <div class="clearfix"></div>
+            <br>
+          </div>
+            <div class="col-md-11 col-md-offset-1">
+            <div class="form-group">
+              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                <div class="actions">
+                  <%= link_to 'Edit', edit_volunteer_path(@volunteer),  class:'btn btn-success'%>
+                  <%= link_to 'Back', volunteers_path , class:'btn btn-primary'%>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-xs-12">
+      <div class="x_panel">
+        <%= render 'volunteer_list' %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+

@@ -1,0 +1,229 @@
+<div class="right_col" role="main">
+  <div class="row">
+
+    <div class="page-title">
+      <div class="title_left">
+        <h3>
+          Inbox
+
+        </h3>
+      </div>
+
+
+
+      <div class="clearfix"></div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Shelter Notifications</h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              <div class="row">
+                <div class="col-sm-3 mail_list_column">
+                  <% @requests.each do |r|%>
+                      <a href="javascript:ReplaceContentInContainer('<%= r.id %>',' <h4><%=r.subject%> </h4>','<%=r.created_at.strftime("%-d/%-m/%y %H:%M:%S")%>','<%=r.name%>','<%=r.contact%>','<%=r.content%>')">
+                        <% if r.id==@request.id%>
+                            <div class="mail_list" id="mail_list<%=r.id%>" style="background:#F8F8F8">
+                        <%else%>
+                            <div class="mail_list" id="mail_list<%= r.id %>" >
+                        <%end%>
+                        <div id="requestCircle<%= r.id %>" class="left">
+                          <%if r.status==0%>
+                              <i class="fa fa-circle"></i> <i class="fa fa-edit"></i>
+                          <%else%>
+                              <%p r.status%>
+                              <i class="fa fa-circle-o"></i><i class="fa fa-edit"></i>
+                          <%end%>
+                        </div>
+                        <div class="right">
+                          <h3> <%= r.name %>  <small><%= r.created_at.strftime("%-d/%-m/%y %H:%M:%S") %></small></h3>
+                          <p><%= r.subject %></p>
+                        </div>
+                        </div>
+                      </a>
+                  <%end%>
+                  <% @requests_status1.each do |r|%>
+                      <a href="javascript:ReplaceContentInContainer('<%= r.id %>',' <h4><%=r.subject%> </h4>','<%=r.created_at.strftime("%-d/%-m/%y %H:%M:%S")%>','<%=r.name%>','<%=r.contact%>','<%=r.content%>')">
+                        <% if r.id==@request.id%>
+                            <div class="mail_list" id="mail_list<%=r.id%>" style="background:#F8F8F8">
+                        <%else%>
+                            <div class="mail_list" id="mail_list<%= r.id %>" >
+                        <%end%>
+                        <div id="requestCircle<%= r.id %>" class="left">
+                          <%if r.status==0%>
+                              <i class="fa fa-circle"></i> <i class="fa fa-edit"></i>
+                          <%else%>
+                              <%p r.status%>
+                              <i class="fa fa-circle-o"></i><i class="fa fa-edit"></i>
+                          <%end%>
+                        </div>
+                        <div class="right">
+                          <h3> <%= r.name %>  <small><%= r.created_at.strftime("%-d/%-m/%y  %H:%M:%S") %></small></h3>
+                          <p><%= r.subject %></p>
+                        </div>
+                        </div>
+                      </a>
+                  <%end%>
+
+
+                </div>
+                <!-- /MAIL LIST -->
+
+                <!-- CONTENT MAIL -->
+                <div class="col-sm-9 mail_view">
+                  <div class="inbox-body">
+                    <div class="mail_heading row">
+                      <div class="col-md-8">
+                      </div>
+                      <div class="col-md-4 text-right">
+                        <p id="mailDate"class="date"> <%=@request.created_at.strftime("%-d/%-m/%y %H:%M:%S")%></p>
+                      </div>
+
+
+                      <div class="col-md-12" id="mailSubject">
+                        <h4> <%=@request.subject%></h4>
+                      </div>
+                    </div>
+                    <div class="sender-info">
+                      <div class="row">
+                        <div class="col-md-12" >
+                          <strong id="mailContentName"><%=@request.name%></strong>
+                          <span id="mailContentContact"><%=@request.contact%></span> to
+                          <strong>me</strong>
+                          <a class="sender-dropdown"><i class="fa fa-chevron-down"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="view-mail" id="mailContent">
+                      <%=@request.content%>
+
+                    </div>
+                    <div class="col-md-12 text-right" id="buttonUpdate">
+                      <%= link_to update_request_path(@request.id) ,method: :post do%>
+                          <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Read"><i class="fa fa-check"></i></button>
+                      <%end%>
+                    </div>
+                  </div>
+
+
+
+
+
+                </div>
+
+              </div>
+              <!-- /CONTENT MAIL -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /page content -->
+
+
+
+
+<script type="text/javascript"><!--
+
+
+function ReplaceContentInContainer(id,subject,date,name,contact,content) {
+
+
+  var divs = document.getElementsByClassName("mail_list");
+  for(var i = 0; i < divs.length; i++){
+    //do something to each div like
+    divs[i].style.background= 'white'
+  }
+
+  //document.getElementById("mail_list").style.background="#F8F8F8";
+  var containerColor = document.getElementById('mail_list'.concat(id));
+  containerColor.style.background = '#F8F8F8';
+
+  var containerSubject = document.getElementById('mailSubject');
+  containerSubject.innerHTML = subject;
+
+  var containerDate = document.getElementById('mailDate');
+  containerDate.innerHTML = date.strftime("%-d/%-m/%y  %H:%M:%S");
+
+  var containerName = document.getElementById('mailContentName');
+  containerName.innerHTML = name;
+
+  var containerContact = document.getElementById('mailContentContact');
+  containerContact.innerHTML = contact;
+
+  var containerContent = document.getElementById('mailContent');
+  containerContent.innerHTML = content;
+}
+//--></script>
+
+
+
+<!-- bootstrap-wysiwyg -->
+<script>
+  $(document).ready(function() {
+    function initToolbarBootstrapBindings() {
+      var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
+            'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
+            'Times New Roman', 'Verdana'
+          ],
+          fontTarget = $('[title=Font]').siblings('.dropdown-menu');
+      $.each(fonts, function(idx, fontName) {
+        fontTarget.append($('<li><a data-edit="fontName ' + fontName + '" style="font-family:\'' + fontName + '\'">' + fontName + '</a></li>'));
+      });
+      $('a[title]').tooltip({
+        container: 'body'
+      });
+      $('.dropdown-menu input').click(function() {
+            return false;
+          })
+          .change(function() {
+            $(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');
+          })
+          .keydown('esc', function() {
+            this.value = '';
+            $(this).change();
+          });
+      $('[data-role=magic-overlay]').each(function() {
+        var overlay = $(this),
+            target = $(overlay.data('target'));
+        overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
+      });
+      if ("onwebkitspeechchange" in document.createElement("input")) {
+        var editorOffset = $('#editor').offset();
+        $('.voiceBtn').css('position', 'absolute').offset({
+          top: editorOffset.top,
+          left: editorOffset.left + $('#editor').innerWidth() - 35
+        });
+      } else {
+        $('.voiceBtn').hide();
+      }
+    }
+    function showErrorAlert(reason, detail) {
+      var msg = '';
+      if (reason === 'unsupported-file-type') {
+        msg = "Unsupported format " + detail;
+      } else {
+        console.log("error uploading file", reason, detail);
+      }
+      $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>' +
+          '<strong>File upload error</strong> ' + msg + ' </div>').prependTo('#alerts');
+    }
+    initToolbarBootstrapBindings();
+    $('#editor').wysiwyg({
+      fileUploadError: showErrorAlert
+    });
+    prettyPrint();
+  });
+</script>
+<!-- /bootstrap-wysiwyg -->
+
+

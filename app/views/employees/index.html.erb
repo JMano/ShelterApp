@@ -1,0 +1,286 @@
+
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="row tile_count">
+
+    <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+      <div class="left"></div>
+      <div class="right">
+        <span class="count_top">
+          Total Adoptions</span>
+        <div class="count"><%=@total_adoptions%></div>
+      </div>
+    </div>
+
+    <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+      <div class="left"></div>
+      <div class="right">
+        <span class="count_top">
+          Total Animals</span>
+        <div class="count"><%=@total_animals%></div>
+      </div>
+    </div>
+
+    <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+      <div class="left"></div>
+      <div class="right">
+        <span class="count_top">
+          Total Amount Donated</span>
+        <div class="count green"><%= @donations_money_value %>
+          €</div>
+        <span class="count_bottom">
+          From
+          <%= @number_of_money_donations %>
+          donations</span>
+      </div>
+    </div>
+
+    <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+      <div class="left"></div>
+      <div class="right">
+        <span class="count_top">
+          Total Food Donated</span>
+        <div class="count green"><%= @donations_food_value %>
+          kg</div>
+        <span class="count_bottom">
+          From
+          <%= @number_of_food_donations %>
+          donations</span>
+      </div>
+    </div>
+
+    <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+      <div class="left"></div>
+      <div class="right">
+        <span class="count_top">Arrivals</span>
+        <div class="count"><%= @last_month_arrivals %></div>
+        <span class="count_bottom">From last Month</span>
+      </div>
+    </div>
+    <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+      <div class="left"></div>
+      <div class="right">
+        <span class="count_top">
+          Total Volunteers</span>
+        <div class="count"><%=@total_volunteers%></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="dashboard_graph">
+
+        <div class="row x_title">
+          <div class="col-md-6">
+            <h3>Global Statistics
+            </h3>
+          </div>
+
+          <div class="col-md-6">
+            <p class="pull-right">
+              <strong>Today's date:
+              </strong><%= DateTime.now.to_date %></p>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-9 col-sm-9 col-xs-12 ">
+            <div class="ct-chart ct-major-twelfth" id="global_chart">
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
+            <div class="x_title">
+              <h2>Chart caption</h2>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-6">
+              <div>
+                <p># of Adoptions</p>
+                <div class="">
+                    <span class="label" style="width: 100%; background-color: #DF2B07; display: block;">&nbsp</span>
+                </div>
+              </div>
+              <div>
+                <p># of Donations</p>
+                <div class="">
+                    <span class="label" style="width: 100%; background-color: #DF9707; display: block;">&nbsp</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-6">
+              <div>
+                <p># of Arrivals</p>
+                <div class="">
+                    <span class="label" style="width: 100%; background-color: #A30589; display: block;">&nbsp</span>
+                </div>
+              </div>
+              <div>
+                <p># of new Volunteers</p>
+                <div class="">
+                    <span class="label" style="width: 100%; background-color: #A31F05; display: block;">&nbsp</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <br>
+
+    <div class="row">
+
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="x_panel tile fixed_height_320">
+          <div class="x_title">
+            <h2>Latest Arrivals</h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li>
+                <a class="collapse-link pull-right">
+                  <i class="fa fa-chevron-up "></i>
+                </a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Animal Name</th>
+                  <th>Date of Arrival</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @last_arrivals.each do |a| %>
+                <tr>
+                  <th scope="row"><%= a.name%></th>
+                  <td><%= a.entry_date%></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="x_panel tile fixed_height_320 overflow_hidden">
+          <div class="x_title">
+            <h2>Donations</h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li>
+                <a class="collapse-link">
+                  <i class="fa fa-chevron-up"></i>
+                </a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+
+            <% total_donations = (@money_donations.size + @food_donations.size + @others_amount).to_f %>
+            <table class="" style="width:100%" id="donut_table">
+            <% if total_donations > 0 %>
+              <tr>
+                <th style="width:37%;">
+                  <p>Chart</p>
+                </th>
+                <th>
+                  <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                    <p class="">Type</p>
+                  </div>
+                  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                    <p class="pull-right">Value (%)</p>
+                  </div>
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  <div class="ct-chart" id="donut_chart"></div>
+                </td>
+                <td>
+                  <table class="tile_info text-right">
+                    <tr>
+                      <td>
+                        <p>
+                          <i class="fa fa-square" style="color: #d70206;"></i>Money</p>
+                      </td>
+                      <td><small class="pull-right"><%= ((@money_donations.size.to_f / (total_donations)) * 100).to_i %> %</small></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>
+                          <i class="fa fa-square" style="color: #f05b4f;"></i>Food</p>
+                      </td>
+                      <td><small class="pull-right"><%= ((@food_donations.size.to_f / (total_donations)) * 100).to_i %> %</small></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>
+                          <i class="fa fa-square" style="color: #f4c63d;"></i>Others</p>
+                      </td>
+                      <td><small class="pull-right"><%= ((@others_amount.to_f / (total_donations)) * 100).to_i %> %</small></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <% else %>
+              <h3 class="text-center">No donations</h3>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="x_panel tile fixed_height_320">
+          <div class="x_title">
+            <h2>Latest Adoptions</h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li>
+                <a class="collapse-link pull-right">
+                  <i class="fa fa-chevron-up "></i>
+                </a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Animal Name</th>
+                  <th>Date of Arrival</th>
+                  <th>Date of Adoption</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @last_adoptions.each do |a| %>
+                <tr>
+                  <th scope="row"><%= a.animal.name %></th>
+                  <td><%= a.animal.entry_date %></td>
+                  <td><%= a.adoption_date %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <br/>
+</div>

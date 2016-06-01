@@ -1,0 +1,114 @@
+<div class="right_col" role="main">
+
+<!-- Page Content -->
+            <div class="container">
+              <div class="row">
+
+                <!-- Blog Post Content Column -->
+                <div class="col-lg-10 col-lg-offset-1">
+                  <h1><strong><%= @animal.name.capitalize %></strong></h1>
+                  <hr>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6 col-lg-offset-1">
+                  <% if @animal.animal_images.size > 0%>
+                      <div class="slider">
+                        <% @animal.animal_images.each do |img| %>
+                            <div><%= image_tag img.image.standard.url, class: 'img-responsive' %></div>
+                        <% end %>
+                      </div>
+                  <% else %>
+                      <div class="slider">
+                        <div><%= image_tag 'animal_placeholder.png', class: 'img-responsive' %></div>
+                      </div>
+                  <% end %>
+                </div>
+
+                <!-- Blog Sidebar Widgets Column -->
+                <div class="col-lg-4 col-xs-12 ">
+                    <div class="row">
+                      <h3 class="extra-margin-left"><strong>Details</strong>
+                        <%= link_to 'Back', animals_list_employees_path , class:'btn btn-primary pull-right'%>
+                        <%= link_to 'Edit', edit_animal_path(@animal), :class => 'btn btn-primary pull-right' %></h3>
+                      <hr>
+                      <ul class="list-unstyled box-padding extra-margin-left-plus">
+                        <li><h5><span class="fa fa-paw" aria-hidden="true"></span><strong>&nbsp Breed: </strong><%= @animal.breed.name %></h5>
+                        </li>
+                        <li><h5 ><span class="fa fa-venus-mars" aria-hidden="true"></span><strong> Gender: </strong>
+                          <% case @animal.gender %>
+                            <% when 0%>
+                                <%= 'Female'%>
+                            <% else %>
+                                <%= 'Male'%>
+                          <% end %></h5>
+                        </li>
+                        <li><h5>&nbsp<span class="fa fa-arrows-v" aria-hidden="true"></span><strong> &nbsp&nbspSize:</strong>
+                          <% case @animal.size %>
+                          <% when 0%>
+                              <%= 'Mini'%>
+                          <% when 1%>
+                              <%= 'Small'%>
+                          <% when 2%>
+                              <%= 'Medium'%>
+                          <% when 3%>
+                              <%= 'Large'%>
+                          <% else %>
+                              <%= 'Giant'%>
+                          <% end %></h5>
+                        </li>
+                        <li>
+                          <h5> <span class="fa fa-calendar-o" aria-hidden="true"></span>
+                            <strong>&nbsp Age:</strong>
+                            <% age_in_years = age_in_years(@animal.date_of_birth) %>
+                            <% if age_in_years == 0 %>
+                                <% age_in_months = age_in_months(@animal.date_of_birth) %>
+                                <% if  age_in_months == 0%>
+                                    <%= '< 1 Month' %>
+                                <% else %>
+                                    <%= age_in_months.to_s + ' (Month)' %>
+                                <% end %>
+                            <% else %>
+                                <%= age_in_years.to_s + ' (Years)'%>
+                            <% end %>
+                          </h5>
+                        </li>
+                        <li><h5><span class="fa fa-align-justify" aria-hidden="true"></span><strong> &nbsp&nbspDescription:</strong> <%= @animal.description %></h5>
+                        </li>
+                        <li><h5><span class="fa fa-stethoscope " aria-hidden="true"></span><strong> &nbsp&nbsp Medical Conditions:</strong> <%= @animal.medical_conditions %></h5>
+                        </li>
+                        <li><h5><strong><u> Current Condition:</u></strong>
+                          <% case @animal.status %>
+                          <% when 0%>
+                              <%= 'In Shelter'%>
+                          <% when 1 %>
+                              <%= 'With FF'%>
+                          <% else %>
+                              <%= 'Adopted'%>
+                          <% end %></h5>
+                        </li>
+                      </ul>
+                      <hr>
+                    </div>
+                  </div>
+              </div>
+              <!-- Projects Row -->
+
+              <div class="row">
+                <% if @animal.animal_images.size > 0%>
+                    <hr>
+                    <% i=0 %>
+                    <div id="bx-pager">
+                      <% @animal.animal_images.each do |img| %>
+                          <div class="col-md-2" style="margin-bottom: 10px;">
+                            <a data-slide-index="<%=i%>" href=""><%= image_tag img.image.thumb.url, class: 'img-thumbnail' %></a>
+                          </div>
+                          <% i+=1 %>
+                      <% end %>
+                    </div>
+                <% end %>
+              </div>
+
+            </div>
+
+    </div>

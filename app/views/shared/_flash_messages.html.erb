@@ -1,0 +1,15 @@
+
+<div class="col-md-9 col-md-offset-3">
+<% flash.each do |type, message| %>
+      <% if type == 'notice' %>
+          <% data_type = 'success' %>
+      <% else %>
+          <% data_type = 'danger' %>
+      <% end %>
+      <div id="notify_div" class="notify hidden <%= bootstrap_class_for(type) %> fade in"
+           data-type="<%= data_type %>" data-message="<%= message %>">
+      </div>
+<% end %></div>
+
+
+

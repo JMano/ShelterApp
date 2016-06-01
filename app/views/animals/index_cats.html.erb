@@ -1,0 +1,97 @@
+
+<div class="container">
+  <h2 class="page-header">Adopt a Friend <%= image_tag 'icon1.png' %></h2>
+
+  <div class="row">
+    <div class="col-md-3" style="margin-bottom: 8px;">
+      <%= link_to 'All', animals_path, :class => 'btn btn-default' %>
+      <%= link_to 'Cats', animals_cats_path, :class => 'btn btn-primary' %>
+      <%= link_to 'Dogs', animals_dogs_path, :class => 'btn btn-default' %>
+    </div>
+    <div id="animal_filters" class="col-md-6 col-md-offset-3">
+      <div class="input-group pull-right">
+        <select id="animal_type_filters" class="form-control selectWidth hidden">
+          <option value="2" selected>Cat</option>
+        </select>
+        <select id="breed_filters" class="form-control selectWidth">
+          <option value="-1" selected>- Breed -</option>
+          <% @cat_breeds.each do |breed| %>
+              <option value="<%= breed.id %>"><%= breed.name %></option>
+          <% end %>
+        </select>
+        <select id="size_filters" class="form-control selectWidth">
+          <option value="-1" selected>- Size -</option>
+          <option value="0">Mini</option>
+          <option value="1">Small</option>
+          <option value="2">Medium</option>
+          <option value="3">Large</option>
+          <option value="4">Giant</option>
+        </select>
+        <select id="age_filters" class="form-control selectWidth">
+          <option value="-1" selected>- Age -</option>
+          <option value="0">Puppy</option>
+          <option value="1">Junior</option>
+          <option value="2">Adult</option>
+        </select>
+        &nbsp
+        <button id="the_cleaner" class="btn btn-primary">Clean</button>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <div class="row" id="animals_list">
+    <% if @animals.size > 0 %>
+    <% @animals.each do |animal| %>
+    <div class="col-md-3 portfolio-item">
+      <div class="panel panel-default my_panel">
+        <div class="panel-body">
+          <% if animal.animal_images.size > 0 %>
+          <%= link_to image_tag(animal.animal_images.first.image.standard.url, class: 'img-responsive'), animal_path(animal) %>
+        <% else %>
+          <%= link_to image_tag('animal_placeholder.png', class: 'img-responsive'), animal_path(animal) %>
+          <% end %>
+        </div>
+        <div class="panel-footer without-padding">
+          <h4 class="without-margin">
+            <%= animal.name %>
+            <% if animal.endangered? %>
+            <span class="fa fa-exclamation-circle text-danger" aria-hidden="true" title="This animal is in DANGER!"></span>
+            <% end %>
+          </h4>
+          <p class="without-margin">
+            <small>Age:
+              <% age_in_years = age_in_years(animal.date_of_birth) %>
+              <% if age_in_years == 0 %>
+              <% age_in_months = age_in_months(animal.date_of_birth) %>
+              <% if  age_in_months == 0%>
+              <%= '< 1 Month' %>
+            <% else %>
+              <%= age_in_months.to_s + ' (Month)' %>
+              <% end %>
+            <% else %>
+              <%= age_in_years.to_s + ' (Years)'%>
+              <% end %></small>
+          </p>
+          <p class="without-margin">
+            <small>Gender:
+              <% if animal.gender == 0%>
+              <span class="fa fa-venus girl-color" aria-hidden="true"></span>
+              <%else%>
+              <span class="fa fa-mars boy-color" aria-hidden="true"></span>
+              <% end%>
+            </small>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <% end %>
+  <% else %>
+    <div class="jumbotron">
+      <h1 class="text-center">NO CATS</h1>
+    </div>
+  <% end %>
+  </div>
+</div>
+</div>

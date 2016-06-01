@@ -1,0 +1,51 @@
+<div>
+  <div class="x_title">
+    <h2>Donators List &nbsp&nbsp&nbsp<small class="pull-right">(Select one to automatically fill donator information)</small></h2>
+
+    <div class="clearfix"></div>
+  </div>
+  <% if action_name == 'edit' %>
+      <div id="users">
+        <input class="search form-control" placeholder="Search" />
+        <br>
+      <ul class="list list-unstyled top_profiles scroll-view">
+        <% @users.each do |user| %>
+            <li class="media event">
+              <div class="media-body">
+                <a class="title name" href="#"><%= user.name %></a>
+                <p class="cc">
+                  <strong>CC:&nbsp</strong>
+                  <%= user.cc %>
+                </p>
+                <p class="contact">
+                  <small><%= user.contact %></small>
+                </p>
+              </div>
+            </li>
+        <% end %>
+      </ul>
+      </div>
+      <% else %>
+      <div id="users">
+        <input class="search form-control" placeholder="Search" />
+        <br>
+  <ul class="list list-unstyled top_profiles scroll-view">
+    <% @users.each do |user| %>
+    <li class="media event">
+      <div class="media-body" onclick="$('#user_id').val('<%= user.id %>');$('#user_cc').val('<%= user.cc %>');$('#user_name').val('<%= user.name %>');$('#user_address').val('<%= user.address %>');$('#user_contact').val('<%= user.contact %>');">
+        <a class="title name"><%= user.name %></a>
+        <p class="cc"> <strong>CC:&nbsp</strong> <%= user.cc %></p>
+        <p class="contact"> <small><%= user.contact %></p></small>
+      </div>
+    </li>
+    <% end %>
+
+  </ul>
+        </div>
+    <% end %>
+
+  </ul>
+</div>
+
+
+<script src="http://listjs.com/no-cdn/list.js"></script>

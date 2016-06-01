@@ -1,0 +1,28 @@
+<div id="wrapper">
+  <div id="login" class="animate form">
+    <section class="login_content">
+      <div>
+      <% render 'form' %>
+        <div class="separator">
+        <p class="change_link">Already a member ?
+          <%= link_to 'Log In Here', controller:'devise/sessions', action:'new', class:'to_register'%>
+        </p>
+          <div class="clearfix"></div>
+          <br />
+          <div>
+
+            <p>ATENTION: All fields with * are mandatory!</p>
+
+            <h2><i class="fa fa-paw" style="font-size: 26px;"></i> Pet Club!</h2>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<!--
+t.string   "phone_number"
+t.string   "address"
+t.date     "birth_date"
+-->

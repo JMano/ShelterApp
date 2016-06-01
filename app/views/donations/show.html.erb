@@ -1,0 +1,123 @@
+<div class="right_col" role="main">
+
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Donation Information</h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div class="col-md-11 col-md-offset-1">
+            <ul class="list-unstyled">
+              <li><h5 ><span class="fa fa-calendar-o" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp&nbsp<strong >Date: </strong><%= pretty_datetime(@donation.donation_date) %></h5>
+              </li>
+                <% case @donation.donation_type %>
+                <% when 0 %>
+                  <li><h5><span class="fa fa-question" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp&nbsp&nbsp<strong>Donation type:</strong>
+                    Other </h5>
+                    </li>
+                  <li><h5><span class="fa fa-check" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp&nbsp<strong>Quantity:</strong> <%= @donation.quantity %></h5>
+                  </li>
+                  <li><h5><span class="fa fa-align-justify" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp&nbsp<strong>Description:</strong> <%= @donation.description %></h5>
+                  </li>
+                <% when 1 %>
+                  <li><h5><span class="fa fa-eur" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp&nbsp&nbsp<strong>Donation type:</strong>
+                    Money </h5>
+                  </li>
+                  <li><h5><span class="fa fa-check" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp<strong>Quantity:</strong> <%= @donation.quantity %> €</h5>
+                  </li>
+                  <li><h5><span class="fa fa-align-justify" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp<strong>Description:</strong> <%= @donation.description %></h5>
+                  </li>
+                <% else %>
+                  <li><h5><span class="fa fa-cutlery" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp&nbsp&nbsp<strong>Donation type:</strong>
+                    Food </h5>
+                  </li>
+                  <li><h5><span class="fa fa-check" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp&nbsp<strong>Quantity:</strong> <%= @donation.quantity %> Kg</h5>
+                  </li>
+                  <li><h5><span class="fa fa-align-justify" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp&nbsp<strong>Description:</strong> <%= @donation.description %></h5>
+                  </li>
+                <% end %>
+
+              </li>
+
+              <div class="clearfix"></div>
+              <li>
+                <h5><span class="fa fa-user" style="font-size:17px;" aria-hidden="true"></span>&nbsp&nbsp&nbsp<strong>User:</strong> <%= @donation.user.name %></h5>
+                <h5><span class="fa fa-cc" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp<strong>User CC:</strong> <%= @donation.user.cc %></h5>
+              </li>
+
+              <div class="clearfix"></div>
+              <li>
+                <h5><span class="fa fa-user-plus" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp<strong>Employee:</strong> <%= @donation.employee.name %></h5>
+                <h5><span class="fa fa-lock" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp&nbsp&nbsp<strong>Employee Code:</strong> <%= @donation.employee_id %></h5>
+              </li>
+            </ul>
+
+          </div>
+            <div class="x_title">
+              <div class="clearfix"></div>
+              <br>
+            </div>
+
+          <div class="col-md-11 col-md-offset-1">
+            <div class="form-group">
+              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                <div class="actions">
+                  <%= link_to 'Edit', edit_donation_path(@donation),  class:'btn btn-success'%>
+                  <%= link_to 'Back', donations_path , class:'btn btn-primary'%>
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-xs-12">
+
+      <div class="x_panel size-of-donation-panel">
+
+        <div class="x_title">
+          <h2 id="name_list">Donations of this User</h2>
+          <div class="clearfix"></div>
+        </div>
+
+        <div class="x_content">
+          <ul class="list list-unstyled top_profiles scroll-view" role="tablist">
+            <% if @previous_donations.size >0 %>
+                <% @previous_donations.each do |donation| %>
+                    <li class="media event">
+                        <strong> Date:</strong> <%= pretty_datetime(donation.donation_date) %>
+                      <br>
+                        <strong> Quantity:</strong> <%= donation.quantity %>
+                      <br>
+                        <% case donation.donation_type %>
+                        <% when 0 %>
+                          <strong>Type:</strong> Other<br>
+                          <strong> Description:</strong> <%= donation.description %>
+                        <% when 1 %>
+                          <strong>Type:</strong> Money
+                       <% else %>
+                          <strong>Type:</strong> Food
+                      <% end %>
+                    </li>
+                <% end %>
+            <% else %>
+                  <strong>This user has no other donations</strong>
+            <% end %>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</div>
+</div>
+
+
+
+
+

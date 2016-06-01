@@ -1,0 +1,41 @@
+<div id="wrapper">
+  <div id="login" class="animate form">
+    <section class="login_content">
+      <div>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <h1>Welcome</h1>
+          <%= devise_error_messages! %>
+          <% if flash[:alert] %>
+            <span class='flash_error'> <%= flash[:alert] %></span>
+          <% end %>
+          <div class="field">
+            <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email', type:'text' %>
+          </div>
+          <div class="field">
+            <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
+          </div>
+          <%= f.submit "Log in", class: 'btn btn-default submit' %>
+          <% if devise_mapping.rememberable? -%>
+          <div class="field">
+            <%= f.check_box :remember_me, class: 'icheckbox' %>
+            <%= f.label :remember_me, style: 'margin-top: 7px;'%>
+          </div>
+          <% end %>
+        <% end %>
+        <div class="separator">
+          <%= render "devise/shared/links" %>
+          <div class="clearfix"></div>
+          <br/>
+          <div>
+            <h2>
+              <i class="fa fa-paw" style="font-size: 26px;"></i>
+              Pet Club!</h2>
+            <p>©2015 All Rights Reserved. Fight for Them!
+              <br>
+              Pet Club!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

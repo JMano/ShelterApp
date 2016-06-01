@@ -1,0 +1,32 @@
+/*
+  =require twitter-bootstrap-static/bootstrap
+
+  Static version of css will use Glyphicons sprites by default
+  =require twitter-bootstrap-static/sprites
+*/
+.carousel-control {
+    top: 40%;
+    left: 15px;
+    width: 40px;
+}
+
+.carousel-control.left, .carousel-control.right{
+    background-image: none;
+}
+
+.carousel-caption {
+    text-align: inherit;
+}
+
+@media (max-width: 979px) {
+    .carousel-inner>.item>img {
+        height: 500px;
+    }
+}
+
+
+@media (max-width: 767px){
+    .carousel-inner>.item>img {
+        height: 300px;
+    }
+}

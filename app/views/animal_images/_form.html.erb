@@ -1,0 +1,25 @@
+<%= form_for(@animal_image) do |f| %>
+  <% if @animal_image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@animal_image.errors.count, "error") %> prohibited this animal_image from being saved:</h2>
+
+      <ul>
+      <% @animal_image.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :animal_id %><br>
+    <%= f.number_field :animal_id %>
+  </div>
+  <div class="field">
+    <%= f.label :images %><br>
+    <%= f.text_area :images %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

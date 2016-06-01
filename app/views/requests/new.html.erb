@@ -1,0 +1,74 @@
+
+<section class="page-content">
+
+  <div class="container">
+
+<div class="row">
+  <div class="col-md-12">
+    <h2>Request Form</h2>
+    <%= form_for @request,validate: true  do |f| %>
+
+        <% if @request.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+              <ul>
+                <% @request.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div id="contact-form">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label><%= f.label :name %> <span class="required">*</span></label>
+                <%= f.text_field :name,:required => true,
+                                 placeholder: "Please enter your name.",
+                                 class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label><%= f.label :contact %> <span class="required">*</span></label>
+                <%= f.text_field :contact, :required => true, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label><%= f.label :subject %></label>
+                <%= f.text_field :assunto, :required => true, class: "form-control", disabled: true, value:@request.subject %>
+                <%= f.hidden_field :subject %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label><%= f.label :content %> <span class="required">*</span></label>
+
+                <%= f.text_area :content, as: :text, :required => true,
+                                placeholder: "Please enter your message.",
+                                class: "form-control" , rows: "10"%>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <%= f.submit 'Send Message', class: 'btn btn-primary' %>
+            </div>
+          </div>
+          <%= f.hidden_field :status, value: 0 %>
+
+          <div class="field">
+            <%= f.hidden_field :shelter_id, value: 1 %>
+          </div>
+    <% end %>
+    </div>
+    </div>
+</div>
+  </div>
+  </section>

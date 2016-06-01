@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Animal Shelter</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+  <%= stylesheet_link_tag 'employee', media: 'all', 'data-turbolinks-track' => true %>
+
+  <%= csrf_meta_tags %>
+
+</head>
+
+<% if devise_controller? %>
+  <body class="nav-md" style="background: #F7F7F7;">
+<% else %>
+  <body class="nav-md">
+
+<% end %>
+  <div class="container body">
+    <div class="main_container">
+      <% if !devise_controller? %>
+      <%= render 'employees/shared/sidebar' %>
+      <% end %>
+      <%= render partial: "shared/flash_messages", flash: flash %>
+
+
+      <%= yield %>
+
+
+</div>
+</div>
+
+<%= javascript_include_tag 'employee', 'data-turbolinks-track' => true %>
+
+<%= yield :js %>
+</body>
+
+</html>

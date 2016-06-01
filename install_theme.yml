@@ -1,0 +1,8 @@
+---
+content_path: 
+partials: {}
+index_path: "../pet-club/index.html.erb"
+stylesheet_dir: app/assets/stylesheets
+image_dir: images
+javascript_dir: app/assets/javascripts
+no_sass: false

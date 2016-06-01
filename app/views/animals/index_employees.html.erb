@@ -1,0 +1,45 @@
+<div class="right_col" role="main">
+  <div class="page-title">
+    <div class="title-left">
+      <h3>Shelter Animals</h3>
+    </div>
+  </div>
+  <hr>
+  <div class="clearfix"></div>
+  <section class="content">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box-header">
+          <h3 class="box-title"></h3>
+        </div>
+        <!-- /.box-header -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active">
+            <a href="#in_shelter" aria-controls="in_shelter" role="tab" data-toggle="tab">In Shelter</a>
+          </li>
+          <li role="presentation">
+            <a href="#adopted" aria-controls="adopted" role="tab" data-toggle="tab">Adopted</a>
+          </li>
+          <li role="presentation">
+            <a href="#ff" aria-controls="ff" role="tab" data-toggle="tab">With Foster Family</a>
+          </li>
+        </ul>
+        <div class="tab-content" >
+          <br>
+          <div role="tabpanel" class="tab-pane active " id="in_shelter"><%= render 'shelter_animals', collection: @shelter_animals%></div>
+          <div role="tabpanel" class="tab-pane" id="adopted"><%= render 'adopted_animals', collection: @adopted_animals%></div>
+          <div role="tabpanel" class="tab-pane" id="ff"><%= render 'ff_animals', collection: @ff_animals%></div>
+        </div>
+<br>
+      </div>
+    </div>
+
+    <%= link_to t('.new', :default => t("helpers.links.new")),
+              new_animal_path,
+              :class => 'btn btn-primary' %>
+  </section>
+
+
+</div>
+</div>

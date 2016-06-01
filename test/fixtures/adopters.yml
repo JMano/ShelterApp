@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  cc_number: MyString
+  address: MyString
+  type: 1
+  duration: 2016-04-07 17:16:40
+
+two:
+  name: MyString
+  cc_number: MyString
+  address: MyString
+  type: 1
+  duration: 2016-04-07 17:16:40

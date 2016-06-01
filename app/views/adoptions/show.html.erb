@@ -1,0 +1,99 @@
+<div class="right_col" role="main">
+
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Adoption Information</h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div class="col-md-11 col-md-offset-1">
+            <ul class="list-unstyled">
+              <li><h5 ><span class="fa fa-calendar-o" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp<strong >Date: </strong><%= pretty_datetime(@adoption.adoption_date) %></h5>
+              </li>
+              <li><h5><span class="fa fa-check" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp<strong>Adoption type:</strong> <% if(@adoption.adoption_type == 1) %>
+                    Permanent
+                <% else %>
+                    Temporary
+                <%end%></h5>
+              </li>
+              <div class="clearfix"></div>
+              <li>
+                <h5><span class="fa fa-paw" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp<strong>Animal:</strong> <%= @adoption.animal.name %></h5>
+                <h5><span class="fa fa-lock" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp&nbsp<strong>Animal Code:</strong> <%= @adoption.animal.id %></h5>
+              </li>
+              <div class="clearfix"></div>
+              <li>
+                <h5><span class="fa fa-user" style="font-size:17px;" aria-hidden="true"></span>&nbsp&nbsp<strong>User:</strong> <%= @adoption.user.name %></h5>
+                <h5><span class="fa fa-cc" style="font-size:15px;" aria-hidden="true"></span>&nbsp<strong>User CC:</strong> <%= @adoption.user.cc %></h5>
+              </li>
+
+              <div class="clearfix"></div>
+              <li>
+                <h5><span class="fa fa-user-plus" style="font-size:15px;" aria-hidden="true"></span> <strong>Employee:</strong> <%= @adoption.employee.name %></h5>
+                <h5><span class="fa fa-lock" style="font-size:15px;" aria-hidden="true"></span>&nbsp&nbsp&nbsp<strong>Employee Code:</strong> <%= @adoption.employee.id %></h5>
+              </li>
+            </ul>
+
+          </div>
+            <div class="x_title">
+              <div class="clearfix"></div>
+              <br>
+            </div>
+
+          <div class="col-md-11 col-md-offset-1">
+            <div class="form-group">
+              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                <div class="actions">
+                  <%= link_to 'Edit', edit_adoption_path(@adoption),  class:'btn btn-success'%>
+                  <%= link_to 'Back', adoptions_path , class:'btn btn-primary'%>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-xs-12">
+
+        <div class="x_panel size-of-adoption-panel">
+
+          <div class="x_title">
+        <h2 id="name_list">Adoptions of this User</h2>
+        <div class="clearfix"></div>
+      </div>
+
+          <div class="x_content">
+      <ul class="list list-unstyled top_profiles scroll-view" role="tablist">
+        <% if @previous_adoptions.size >0 %>
+            <% @previous_adoptions.each do |adoption| %>
+                <li>
+                    <strong> Date:</strong> <%= adoption.adoption_date %>
+                      <br>
+                    <strong> Animal:</strong> <%= adoption.animal.name %>
+                      <br>
+                    <% if(adoption.adoption_type == 1) %>
+                      <strong>Type:</strong> Permanent
+                    <% else %>
+                      <strong>Type:</strong> Temporary
+                    <%end%>
+                </li>
+            <% end %>
+        <%else%>
+            <strong>This user has no other adoptions</strong>
+        <%end%>
+      </ul>
+
+    </div>
+    </div>
+    </div>
+
+  </div>
+  </div>
+</div>
+
+
+
+

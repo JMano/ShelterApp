@@ -1,0 +1,123 @@
+        <%= form_for @animal, html: { multipart: true, id: 'animal_form', 'data-action': action_name, 'data-animal-type': @animal.animal_type, 'data-breed-id': @animal.breed_id } do |f| %>
+            <% if @animal.errors.any? %>
+                <div id="error_explanation">
+                  <h2 class="text-red"><%= pluralize(@animal.errors.count, "error") %> prohibited this animal from being saved:</h2>
+                </div>
+            <% end %>
+              <div class="form-group">
+                <%= f.label :name, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <%= f.text_field :name,  class: "form-control col-md-7 col-xs-12"%>
+                </div>
+              </div>
+            <div class="form-group">
+              <%= f.label :animal_type, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <%= f.select :animal_type, [['Dog', 1], ['Cat', 2]], {}, { class: "form-control col-md-7 col-xs-12", id:'animal_type'}%>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :gender, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <%= f.select :gender, [['Female', 0], ['Male', 1]], {}, { class: "form-control  col-md-7 col-xs-12" }%>
+
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :breed_id, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <% dogs = options_from_collection_for_select(@breeds_dogs, 'id', 'name') %>
+                <% cats = options_from_collection_for_select(@breeds_cats, 'id', 'name') %>
+                <%= f.select_tag :dog_breed_id, dogs, { class: "form-control col-md-7  col-xs-12", id: 'select_dogs'}%>
+                <%= f.select_tag :cat_breed_id, cats,{ class: "form-control col-md-7 col-xs-12 select-hidden", id: 'select_cats'}%>
+                <%= f.hidden_field :breed_id, value: @animal.breed_id %>
+              </div>
+            </div>
+            <div class="form-group">
+                <%= f.label :date_of_birth, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <%= f.text_field :date_of_birth, {class: "form-control has-feedback-left col-md-7 col-xs-12", id: 'date_picker'}%>
+                  <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                </div>
+              </div>
+
+            <div class="form-group">
+              <%= f.label :entry_date, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <%= f.text_field :entry_date,  {class: "form-control has-feedback-left col-md-7 col-xs-12", id: 'date_picker2'}%>
+                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+              </div>
+            </div>
+                <div class="form-group">
+                  <%= f.label :size, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <%= f.select :size, [['Mini', 0], ['Small', 1], ['Medium', 2], ['Large', 3], ['Giant', 4]], {}, { class: "form-control  col-md-7 col-xs-12" }%>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :description, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <%= f.text_area :description,  class: "form-control col-md-7 col-xs-12"%>
+                  </div>
+                </div>
+                    <%= f.hidden_field :status, value: '0'%>
+                <div class="form-group">
+                  <%= f.label :medical_conditions, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <%= f.text_area :medical_conditions,  class: "form-control col-md-7 col-xs-12"%>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :images, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+                  <%= f.fields_for :images, @animal.animal_images do | f_img | %>
+                      <% if @animal.animal_images %>
+                        <% i=0 %>
+                          <% @animal.animal_images.each do |img| %>
+                            <% i+=1 %>
+                            <% if (i%3==0) %>
+                              <div class="row">
+                            <% end %>
+                            <div id="image<%= img.id %>" class="col-md-3 portfolio-item">
+                              <%= image_tag img.image.thumb.url, class: 'img-responsive' %>
+                              <button onClick="setModalParameter(<%= img.id %>)" type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmImageDelete">X</button>
+                            </div>
+                            <% if (i%3==0) %>
+                              </div>
+                          <% end %>
+                          <!-- /.row -->
+                        <!-- Projects Row -->
+                        <% end %>
+                      <% end %>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <%= f_img.file_field :image, multiple: true, name: "animal_images[image][]", class: 'btn btn-primary' %>
+                    </div>
+                    <div id="confirmImageDelete" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                      <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+
+                          <div class="modal-body">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                            </button>
+                            <h5>Confirm image delete?</h5>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button id="buttonConfirmImageDelete" type="button" data-dismiss="modal" class="btn btn-danger">Confirm</button>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                  <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                    <div class="actions">
+                      <%= f.submit 'Submit',  class:'btn btn-success'%>
+                      <%= link_to 'Back', animals_list_employees_path , class:'btn btn-primary'%>
+                    </div>
+                    </div>
+                </div>
+        <% end %>

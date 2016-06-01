@@ -1,0 +1,57 @@
+<div class="right_col" role="main">
+
+  <div class="page-title">
+    <div class="title-left">
+      <h3>Shelter Donations</h3>
+    </div>
+  </div>
+  <hr>
+  <div class="clearfix"></div>
+
+  <section class="content">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box-header">
+          <h3 class="box-title"></h3>
+        </div>
+        <!-- /.box-header -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active">
+            <a href="#all_donations" aria-controls="all_donations" role="tab" data-toggle="tab">All</a>
+          </li>
+          <li role="presentation">
+            <a href="#money" aria-controls="money" role="tab" data-toggle="tab">Money</a>
+          </li>
+          <li role="presentation">
+            <a href="#food" aria-controls="food" role="tab" data-toggle="tab">Food</a>
+          </li>
+          <li role="presentation">
+            <a href="#other" aria-controls="other" role="tab" data-toggle="tab">Other</a>
+          </li>
+        </ul>
+
+        <div class="tab-content" >
+          <br>
+          <div role="tabpanel" class="tab-pane active " id="all_donations"><%= render 'all_donations', collection: @donations%></div>
+          <div role="tabpanel" class="tab-pane" id="money"><%= render 'money_donations', collection: @money_donations%></div>
+          <div role="tabpanel" class="tab-pane" id="food"><%= render 'food_donations', collection: @food_donations%></div>
+          <div role="tabpanel" class="tab-pane" id="other"><%= render 'other_donations', collection: @other_donations%></div>
+        </div>
+
+
+      </div>
+    </div>
+  <br>
+    <%= link_to t('.new', :default => t("helpers.links.new")),
+                new_donation_path,
+                :class => 'btn btn-primary' %>
+  </section>
+
+</div>
+</div>
+
+
+
+
+

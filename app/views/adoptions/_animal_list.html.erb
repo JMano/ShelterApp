@@ -1,0 +1,41 @@
+<div class="clearfix"></div>
+<% if action_name == 'edit' %>
+    <div id="animals">
+      <input class="search form-control" placeholder="Search" />
+      <br>
+      <ul class="list list-unstyled top_profiles scroll-view">
+        <% @animals.each do |animal| %>
+            <li class="media event">
+              <div class="media-body">
+                <a class="title name" href="#"><%= animal.name %></a>
+                <p class="code">
+                  <strong>Code:&nbsp</strong>
+                  <%= animal.id %>
+                </p>
+              </div>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+<% else %>
+    <div id="animals">
+      <input class="search form-control" placeholder="Search" />
+      <br>
+      <ul class="list list-unstyled top_profiles scroll-view">
+        <% @animals.each do |animal| %>
+            <li class="media event">
+              <div class="media-body" onclick="$('#animal_code').val('<%= animal.id %>');$('#animal_id').val('<%= animal.id %>');$('#animal_name').val('<%= animal.name %>');">
+                <a class="title name" href="#"><%= animal.name %></a>
+                <p class="code">
+                  <strong>Code:&nbsp</strong>
+                  <%= animal.id %>
+                </p>
+              </div>
+            </li>
+        <% end %>
+
+      </ul>
+    </div>
+<% end %>
+
+</ul>

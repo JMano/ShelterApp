@@ -1,0 +1,140 @@
+<div class="right_col" role="main">
+
+  <div class="title-left">
+    <h3>Shelter: <%=@shelter.name%></h3>
+  </div>
+
+  <div class="row">
+
+
+    <div class="col-md-7 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2> Edit <%=@shelter.name%> Information</h2>
+
+          <div class="clearfix"></div>
+        </div>
+
+        <div class="x_content">
+
+          <br>
+
+
+          <div class="form-horizontal form-label-left">
+
+            <%= form_for(@shelter) do |f| %>
+                <% if @shelter.errors.any? %>
+                    <div id="error_explanation">
+                      <h2 class="text-red"><%= pluralize(@shelter.errors.count, "error") %> prohibited this shelter from being saved:</h2>
+                    </div>
+                <% end %>
+
+                <div class="form-group">
+                  <%= f.label :name, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+                  <div class="col-md-9 col-sm-6 col-xs-12">
+                    <%= f.text_field :name, class: "form-control has-feedback-left col-md-7 col-xs-12" %>
+                    <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :address, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+                  <div class="col-md-9 col-sm-6 col-xs-12">
+                    <%= f.text_field :address, class: "form-control has-feedback-left col-md-7 col-xs-12" %>
+                    <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
+
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :email, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+                  <div class="col-md-9 col-sm-6 col-xs-12">
+                    <%= f.text_field :email, class: "form-control has-feedback-left col-md-7 col-xs-12" %>
+                    <span class="fa fa-envelope-o form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :phone, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+                  <div class="col-md-9 col-sm-6 col-xs-12">
+                    <%= f.text_field :phone, class: "form-control has-feedback-left col-md-7 col-xs-12" %>
+                    <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :opening_date, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+                  <div class="col-md-9 col-sm-6 col-xs-12">
+                    <%= f.text_field :opening_date, class: "form-control  has-feedback-left  col-md-7 col-xs-12" %>
+                    <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= f.label :description, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+                  <div class="col-md-9 col-sm-6 col-xs-12">
+                    <%= f.text_area :description, class: "form-control col-md-7 col-xs-12" %>
+                    <ul class="parsley-errors-list" id="parsley-id-6535"></ul>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :schedule, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+                  <div class="col-md-9 col-sm-6 col-xs-12">
+                    <%= f.text_area :schedule, class: "form-control col-md-7 col-xs-12" %>
+                  </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                  <div class="col-md-9 col-sm-6 col-xs-12 col-md-offset-4">
+                    <div class="actions">
+                      <%= f.submit 'Submit', class: 'btn btn-success' %>
+                      <%= link_to 'Back', employees_path , class:'btn btn-primary'%>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 col-sm-12 col-xs-12">
+      <div class="x_panel height-fixed-for-content">
+        <div class="x_title">
+          <h2> MAP</h2>
+          <div class="clearfix"></div>
+        </div>
+
+        <div id="map" class="height-fixed-for-map"></div>
+        <script>
+          var map;
+          function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: {lat: 40.2033145, lng: -8.410257300000012},
+              zoom: 7
+            });
+
+            var marker;
+            var infowindow = new google.maps.InfoWindow();
+            marker = new google.maps.Marker({
+              position: {lat:<%= Geocoder.search(@shelter.address)[0].latitude%>, lng: <%=Geocoder.search(@shelter.address)[0].longitude%>},
+              map: map,
+              title: '<%=@shelter.name%>'
+            });
+
+            google.maps.event.addListener(marker, 'click', (function (marker) {
+              return function () {
+                infowindow.setContent('<%=@shelter.name%>' + ', ' + '<%=@shelter.address%>');
+                infowindow.open(map, marker);
+              }
+            })(marker));
+
+
+          }
+        </script>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_H6CJwxGOMchdb5VUD32Xfr7pZoZVZ5s&callback=initMap"
+        async defer></script>

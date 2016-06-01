@@ -1,0 +1,25 @@
+<div>
+    <div class="x_title">
+        <h2>Volunteers List</h2>
+
+        <div class="clearfix"></div>
+    </div>
+    <div id="users">
+        <input class="search form-control" placeholder="Search" />
+        <br>
+        <ul class="list list-unstyled top_profiles scroll-view">
+            <% @volunteer_users.each do |voluntary| %>
+            <li class="media event">
+                <div class="media-body">
+                    <p class="title name"><strong><%= voluntary.user.name %></strong></p>
+                </div>
+            </li>
+            <% end %>
+        </ul>
+    </div>
+
+    </ul>
+</div>
+
+
+<script src="http://listjs.com/no-cdn/list.js"></script>

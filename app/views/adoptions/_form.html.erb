@@ -1,0 +1,131 @@
+
+<div class="form-horizontal form-label-left input_mask">
+  <%= form_for(@adoption) do |f| %>
+      <% if @adoption.errors.any? %>
+          <div id="error_explanation">
+            <h2 class="text-red"><%= pluralize(@adoption.errors.count, "error") %> prohibited this adoption from being saved:</h2>
+          </div>
+      <% end %>
+      <%= f.hidden_field :user_id, id: 'user_id' %>
+      <% if action_name == 'edit' %>
+          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            <%= f.text_field_tag :user_cc, nil, class: "form-control has-feedback-left", id: 'user_cc', placeholder: 'ID/Passport', value:@adoption.user.cc, disabled: true%>
+            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            <%= f.text_field_tag :user_name, nil, class: "form-control", id: 'user_name', placeholder: 'Full Name', value:@adoption.user.name, disabled: true%>
+            <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            <%= f.text_field_tag :user_address, nil, class: "form-control has-feedback-left", id: 'user_address', placeholder: 'Address', value:@adoption.user.address, disabled: true%>
+            <span class="fa fa-home form-control-feedback left" aria-hidden="true"></span>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            <%= f.text_field_tag :user_contact, nil, class: "form-control", id: 'user_contact', placeholder: 'Phone', value:@adoption.user.contact, disabled: true%>
+            <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+          </div>
+
+          <div class="x_title">
+            <h2><br>Animal Information</h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            <%= f.text_field :animal_id, class: "form-control has-feedback-left", id: 'animal_id', placeholder: 'Animal Code', value:@adoption.animal.id, disabled: true%>
+            <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
+          </div>
+
+          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            <%= f.text_field_tag :animal_name, nil, class: "form-control", id: 'animal_name', placeholder: 'Animal Name', value: @adoption.animal.name, disabled: true%>
+            <span class="fa fa-paw form-control-feedback right" aria-hidden="true"></span>
+          </div>
+      <% else %>
+
+          <div class="field_with_errors">
+          <% if @adoption.errors[:user_id].any? %>
+              <label for="adoption_adoption_date" class=" text-red message"><%= @adoption.errors[:user_id].first %></label><br>
+          <% end %>
+            </div>
+          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            <%= f.text_field_tag :user_cc, nil, class: "form-control has-feedback-left", id: 'user_cc', placeholder: 'ID/Passport'%>
+            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            <%= f.text_field_tag :user_name, nil, class: "form-control", id: 'user_name', placeholder: 'Full Name'%>
+            <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            <%= f.text_field_tag :user_address, nil, class: "form-control has-feedback-left", id: 'user_address', placeholder: 'Address'%>
+            <span class="fa fa-home form-control-feedback left" aria-hidden="true"></span>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            <%= f.text_field_tag :user_contact, nil, class: "form-control", id: 'user_contact', placeholder: 'Phone'%>
+            <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+          </div>
+
+          <div class="x_title">
+            <h2><br>Animal Information <small> (Please select an animal from panel on the right)</small></h2>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+            <div class="field_with_errors">
+
+            <%= f.text_field_tag :animal_code, nil, class: "form-control has-feedback-left", id: 'animal_code', placeholder: 'Animal Code', disabled: true %>
+            <%= f.hidden_field :animal_id, id: 'animal_id' %>
+              <span class="fa fa-paw form-control-feedback left" aria-hidden="true"></span>
+
+              <% if @adoption.errors[:animal_id].any? %>
+                  <label for="adoption_adoption_date" class=" text-red message"><%= @adoption.errors[:animal_id].first %></label>
+              <% end %>
+          </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+
+            <div class="field_with_errors">
+            <%= f.text_field_tag :animal_name, nil, class: "form-control", id: 'animal_name', placeholder: 'Animal Name', disabled: true%>
+            <span class="fa fa-paw form-control-feedback right" aria-hidden="true"></span>
+
+              <% if @adoption.errors[:animal_id].any? %>
+                  <label for="adoption_adoption_date" class=" text-red message"><%= @adoption.errors[:animal_id].first %></label>
+              <% end %>
+          </div>
+          </div>
+      <% end %>
+
+
+      <div class="x_title">
+        <h2><br>Adoption Information</h2>
+        <div class="clearfix"></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :adoption_date, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+        <div class="col-md-6 col-sm-9 col-xs-12">
+          <%= f.text_field :adoption_date,  {class: "form-control has-feedback-left col-md-7 col-xs-12", id: 'date_picker2'}%>
+          <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :adoption_type, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+        <div class="col-md-6 col-sm-9 col-xs-12">
+          <%= f.select :adoption_type, [['Permanent', 1], ['Temporary', 2]], {}, { class: "form-control col-md-7 col-xs-12"}%>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :employee_id, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+        <div class="col-md-6 col-sm-9 col-xs-12">
+          <%= f.text_field :employee,  class: "form-control col-md-7 col-xs-12", disabled: true, value: current_employee.name%>
+          <%= f.hidden_field :employee_id , value: current_employee.id%>
+        </div>
+      </div>
+      <div class="ln_solid"></div>
+      <div class="form-group">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+          <div class="actions">
+            <%= f.submit 'Submit', class:'btn btn-success'%>
+            <%= link_to 'Back', adoptions_path , class:'btn btn-primary'%>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+</div>

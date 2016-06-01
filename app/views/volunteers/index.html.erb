@@ -1,0 +1,60 @@
+<% model_class = Volunteer %>
+
+<div class="right_col" role="main">
+
+  <div class="page-title">
+    <div class="title-left">
+      <h3>Shelter Volunteers</h3>
+    </div>
+  </div>
+<hr>
+  <div class="clearfix"></div>
+
+  <section class="content">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box-body table-responsive">
+          <table id="list_datatable" class="display table table-bordered table-striped text-center">
+            <thead>
+            <tr>
+              <th class="text-center"><%= model_class.human_attribute_name(:user) %></th>
+              <th class="text-center"><%= model_class.human_attribute_name(:contact) %></th>
+              <th class="text-center"><%= model_class.human_attribute_name(:address) %></th>
+              <th class="text-center"><%= model_class.human_attribute_name(:employee) %></th>
+              <th class="text-center"><%=t '.actions', :default => t("helpers.actions") %></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @volunteers.each do |volunteer| %>
+                <tr>
+                  <td><%= link_to volunteer.user.name, volunteer_path(volunteer) %>
+                  <td><%= volunteer.user.contact %>
+                  <td><%= volunteer.user.address%>
+                  <td><%= volunteer.employee.name%>
+                  <td>
+                    <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                                edit_volunteer_path(volunteer), :class => 'btn btn-default btn-xs' %>
+                    <%= link_to t('.destroy', :default => t("helpers.links.destroy")), volunteer_path(volunteer.id), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs
+                  btn-danger' %>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <br>
+    <%= link_to t('.new', :default => t("helpers.links.new")),
+                new_volunteer_path,
+                :class => 'btn btn-primary' %>
+  </section>
+
+</div>
+</div>
+
+
+
+
+

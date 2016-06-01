@@ -1,0 +1,53 @@
+<div class="right_col" role="main">
+
+  <div class="page-title">
+    <div class="title-left">
+      <h3>Shelter Adoptions</h3>
+    </div>
+  </div><hr>
+  <div class="clearfix"></div>
+
+  <section class="content">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box-header">
+          <h3 class="box-title"></h3>
+        </div>
+        <!-- /.box-header -->
+
+        <!-- /.box-header -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active">
+            <a href="#all_adoptions" aria-controls="all_adoptions" role="tab" data-toggle="tab">All</a>
+
+          </li>
+          <li role="presentation">
+            <a href="#temporary" aria-controls="temporary" role="tab" data-toggle="tab">Temporary</a>
+          </li>
+
+          <li role="presentation">
+            <a href="#permanent" aria-controls="permanent" role="tab" data-toggle="tab">Permanent</a>
+          </li>
+        </ul>
+
+        <div class="tab-content" >
+          <br>
+          <div role="tabpanel" class="tab-pane active " id="all_adoptions"><%= render 'all_adoptions', collection: @adoptions%></div>
+          <div role="tabpanel" class="tab-pane" id="temporary"><%= render 'temporary_adoptions', collection: @temporary_adoptions%></div>
+          <div role="tabpanel" class="tab-pane" id="permanent"><%= render 'permanent_adoptions', collection: @permanent_adoptions%></div>
+        </div>
+      </div>
+    </div>
+
+    <%= link_to t('.new', :default => t("helpers.links.new")),
+                new_adoption_path,
+                :class => 'btn btn-primary' %>
+  </section>
+
+</div>
+</div>
+
+
+
+

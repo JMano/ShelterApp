@@ -1,0 +1,50 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<%= root_path %>">
+        <%= image_tag 'logo.png' %>
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+
+        <% if action_name == 'index' and controller_name == 'static_pages' %>
+          <li class="active"><%= link_to 'Home', root_path %></li>
+        <% else %>
+            <li><%= link_to 'Home', root_path %></li>
+        <% end %>
+
+        <% if action_name == 'index' and controller_name == 'animals'%>
+            <li class="active"><%= link_to 'Adoptions', controller: 'animals', action: 'index' %></li>
+        <% else %>
+            <li><%= link_to 'Adoptions', controller: 'animals', action: 'index' %></li>
+        <% end %>
+        <% if action_name == 'donations' and controller_name == 'static_pages' %>
+            <li class="active"><%= link_to 'Donations', controller: 'static_pages', action: 'donations' %></li>
+        <% else %>
+            <li><%= link_to 'Donations', controller: 'static_pages', action: 'donations' %></li>
+        <% end %>
+        <% if action_name == 'volunteer' and controller_name == 'static_pages' %>
+            <li class="active"><%= link_to 'Volunteer', controller: 'static_pages', action: 'volunteer' %></li>
+        <% else %>
+            <li><%= link_to 'Volunteer', controller: 'static_pages', action: 'volunteer' %></li>
+        <% end %>
+        <% if action_name == 'contacts' and controller_name == 'static_pages' %>
+            <li class="active"><%= link_to 'Contacts', controller: 'static_pages', action: 'contacts' %></li>
+        <% else %>
+            <li><%= link_to 'Contacts', controller: 'static_pages', action: 'contacts' %></li>
+        <% end %>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</div>

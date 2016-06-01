@@ -1,0 +1,125 @@
+<!-- Page Content -->
+<div class="container">
+  <div class="row">
+
+    <!-- Blog Post Content Column -->
+    <div class="col-lg-12">
+
+      <!-- Blog Post -->
+
+      <!-- Title -->
+      <h1>
+        <strong><%= @animal.name.capitalize %></strong>
+        <% if @animal.endangered? %>
+        <span class="fa fa-exclamation-circle text-danger" aria-hidden="true" title="This animal is in DANGER!"></span>
+        <% end %>
+      </h1>
+      <% if @animal.endangered? %>
+      <span class="fa fa-exclamation-circle text-danger" aria-hidden="true" title="This animal is in DANGER!"></span>
+      <small class="text-danger">This animal is heading for slaughter. SAVE IT NOW!</small>
+      <% end %>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-7">
+      <% if @animal.animal_images.size > 0%>
+              <div class="slider">
+                <% @animal.animal_images.each do |img| %>
+                    <div><%= image_tag img.image.standard.url, class: 'img-responsive' %></div>
+                <% end %>
+              </div>
+       <% else %>
+          <div class="slider">
+            <div><%= image_tag 'animal_placeholder.png', class: 'img-responsive' %></div>
+          </div>
+      <% end %>
+    </div>
+
+    <!-- Blog Sidebar Widgets Column -->
+    <div class="col-md-5">
+    <div class="box-style-orange-fixed-height">
+
+      <!-- Blog Categories Well -->
+      <h3 class="text-center "><strong ><%= image_tag 'icon1.png' %> <span><%= @animal.name.capitalize %></span> </strong></h3>
+      <hr>
+      <div class="row">
+          <ul class="list-unstyled">
+            <span class="text-style-orange"> <strong>Animal code: </strong></span><%= @animal.id %>
+            <li><h5 ><strong >Breed: </strong><%= @animal.breed.name %></h5>
+            </li>
+            <li><h5 ><strong >Gender: </strong>
+              <% case @animal.gender %>
+              <% when 0%>
+                  <%= 'Female'%> <span class="fa fa-venus girl-color" aria-hidden="true"></span>
+              <% else %>
+                  <%= 'Male'%> <span class="fa fa-mars boy-color" aria-hidden="true"></span>
+              <% end %></h5>
+            </li>
+            <li><h5><strong>Size:</strong>
+              <% case @animal.size %>
+              <% when 0%>
+                  <%= 'Mini'%>
+              <% when 1%>
+                  <%= 'Small'%>
+              <% when 2%>
+                  <%= 'Medium'%>
+              <% when 3%>
+                  <%= 'Large'%>
+              <% else %>
+                  <%= 'Giant'%>
+              <% end %></h5>
+            </li>
+            <li>
+              <h5>
+                <strong>Age:</strong>
+                <% age_in_years = age_in_years(@animal.date_of_birth) %>
+                <% if age_in_years == 0 %>
+                    <% age_in_months = age_in_months(@animal.date_of_birth) %>
+                    <% if  age_in_months == 0%>
+                        <%= '< 1 Month' %>
+                    <% else %>
+                        <%= age_in_months.to_s + ' (Month)' %>
+                    <% end %>
+                <% else %>
+                    <%= age_in_years.to_s + ' (Years)'%>
+                <% end %>
+              </h5>
+            </li>
+            <li><h5><strong>Description:</strong> <%= @animal.description %></h5>
+            </li>
+            <li><h5><strong>Medical Conditions:</strong> <%= @animal.medical_conditions %></h5>
+            </li>
+            <li><h5><strong><u> Current Condition:</u></strong>
+              <% case @animal.status %>
+              <% when 0%>
+                  <%= 'In Shelter'%>
+              <% when 1 %>
+                  <%= 'With Foster Family'%>
+              <% else %>
+                  <%= 'Adopted'%>
+              <% end %></h5>
+          </ul>
+      </div>
+    </div>
+    <br>
+      <%= button_to 'Adopt me!', new_adoption_request_path(@animal.id) , class:'btn btn-large btn-warning center-block', method:'get'%></div>
+  </div>
+  <!-- Projects Row -->
+
+  <div class="row">
+      <% if @animal.animal_images.size > 0%>
+        <hr>
+        <% i=0 %>
+        <div id="bx-pager">
+            <% @animal.animal_images.each do |img| %>
+              <div class="col-md-2" style="margin-bottom: 10px;">
+                <a data-slide-index="<%=i%>" href=""><%= image_tag img.image.thumb.url, class: 'img-thumbnail' %></a>
+              </div>
+              <% i+=1 %>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
+
+</div>
