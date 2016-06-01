@@ -55,7 +55,7 @@ gem "sdoc", "~> 0.4.0", group: :doc
 
 gem "font-awesome-rails"
 
-gem "fog-aws"
+gem "fog"
 gem "carrierwave", github: "carrierwaveuploader/carrierwave"
 gem "mini_magick"
 
