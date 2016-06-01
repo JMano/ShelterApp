@@ -55,9 +55,9 @@ gem "sdoc", "~> 0.4.0", group: :doc
 
 gem "font-awesome-rails"
 
+gem "fog-aws"
 gem "carrierwave", github: "carrierwaveuploader/carrierwave"
 gem "mini_magick"
-gem "fog-aws"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
