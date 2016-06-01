@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require data-confirm-modal
 //= require admin/data_tables/jquery.dataTables.min
 //= require admin/data_tables/dataTables.bootstrap.min
 //= require twitter/bootstrap

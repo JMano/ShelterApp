@@ -16,18 +16,23 @@ Rails.application.routes.draw do
   get 'dogs' => 'animals#list_dogs', as: :animals_dogs
   get 'cats' => 'animals#list_cats', as: :animals_cats
   post 'animals/filters' => 'animals#filters', as: :animal_filters
+  post  'requests/all'  =>            'requests#update_all', as: :update_all_request
   post  'requests/:id'  =>            'requests#update', as: :update_request
   get 'return_animal/:id' => 'animals#return', as: :return_animal_to_shelter
   get 'requests/new/:animal_id' => 'requests#new', as: :new_adoption_request
+
+
+
   get 'endanger/:id' => 'animals#endanger', as: :animal_in_danger
   get 'save/:id' => 'animals#save', as: :animal_save
 
+  delete 'requests' => 'requests#destroy_all'
   get 'global_stats' => 'charts#global_stats', as: :global_stats
   get 'donations_stats' => 'donations#stats', as: :donations_stats
 
 
   resources :animals
-  resources :requests, only: [:index, :new, :create]
+  resources :requests, only: [:index, :new, :create,:destroy]
   resources :adoptions
   resources :shelter
   resources :donations

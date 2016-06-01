@@ -645,7 +645,7 @@ li.current-page a {
   float: left;
 }
 .panel_toolbox>li>a {
-  padding: 5px;
+  padding: 0px;
   color: #C5C7CB;
   font-size: 14px;
 }
@@ -5254,7 +5254,8 @@ body {
   vertical-align: top;
 }
 .tooltip-inner {
-  white-space: normal;
+  white-space:nowrap;
+  max-width:none;
 }
 .btn-upload .tooltip-inner {
   white-space: nowrap;

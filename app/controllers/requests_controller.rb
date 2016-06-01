@@ -19,6 +19,16 @@ class RequestsController < ApplicationController
   def show
   end
 
+  def destroy_all
+    Request.destroy_all
+      deleted = true
+    if deleted
+      redirect_to requests_path, notice: 'All notifications successfully deleted'
+    else
+      redirect_to requests_path
+    end
+  end
+
   def update_all
     Request.update_all(status: 1)
     redirect_to(:back)

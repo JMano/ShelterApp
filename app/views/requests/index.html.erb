@@ -19,9 +19,25 @@
             <div class="x_title">
               <h2>Shelter Notifications</h2>
               <ul class="nav navbar-right panel_toolbox">
-                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+
+
+
+                <li>
+                  <% if @request%>
+                  <%= link_to update_all_request_path ,method: :post do %>
+                      <button class="btn btn-default btn-sm" data-toggle="tooltip" data-original-title="Mark ALL as read" style="margin-bottom: 5px;"><i class="fa fa-check text-green"></i></button>
+                  <% end %>
+                  <%end%>
+                </li>
+                <li>
+                  <% if @request%>
+                      <%= link_to requests_path,:method => :delete,title: 'Delete', data: {confirm: 'Are you sure?', commit: 'Yes','commit-class': 'btn-primary'}  do %>
+                    <button class="btn btn-default btn-sm" data-toggle="tooltip" data-original-title="Delete ALL" style="margin-bottom: 5px;"><i class="fa fa-trash text-danger" aria-hidden="true"></i></button>
+                <% end %>
+                  <% end %>
                 </li>
               </ul>
+
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -77,6 +93,7 @@
                 <!-- /MAIL LIST -->
 
                 <!-- CONTENT MAIL -->
+                <% if @request%>
                 <div class="col-sm-9 mail_view">
                   <div class="inbox-body">
                     <div class="mail_heading row">
@@ -105,24 +122,30 @@
                       <%=@request.content%>
 
                     </div>
-                    <div class="col-md-12 text-right" id="buttonUpdate">
-                      <%= link_to update_request_path(@request.id) ,method: :post do%>
-                          <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Read"><i class="fa fa-check"></i></button>
-                      <%end%>
-                    </div>
+
+                    <ul class="nav navbar-right panel_toolbox">
+
+                      <li><%= link_to  update_request_path(@request.id) , style:'color: #333;', data: {toggle: 'tooltip', original_title: 'Mark as read' }, method: :post do %>
+                            <i class="fa fa-check"></i>
+                        <% end %>
+                      </li>
+                    </ul>
                   </div>
 
 
 
 
 
+
                 </div>
+                    <%end%>
 
               </div>
               <!-- /CONTENT MAIL -->
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -152,7 +175,7 @@ function ReplaceContentInContainer(id,subject,date,name,contact,content) {
   containerSubject.innerHTML = subject;
 
   var containerDate = document.getElementById('mailDate');
-  containerDate.innerHTML = date.strftime("%-d/%-m/%y  %H:%M:%S");
+  containerDate.innerHTML = date;
 
   var containerName = document.getElementById('mailContentName');
   containerName.innerHTML = name;

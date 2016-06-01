@@ -55,6 +55,8 @@ gem 'rails_12factor', group: :production
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
+
 gem "font-awesome-rails"
 
 gem "fog"
