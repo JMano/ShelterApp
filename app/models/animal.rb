@@ -129,11 +129,11 @@ class Animal < ActiveRecord::Base
   def self.filter_animals_by_age(age)
     case age
     when 0
-      Animal.where(" strftime(date('now')) - strftime('%Y', date_of_birth) < 1").where(status: [0, 1])
+      Animal.where("date_part('year', age(date_of_birth)) < 1").where(status: [0, 1])
     when 1
-      Animal.where(" strftime(date('now')) - strftime('%Y', date_of_birth) >= 1 AND strftime(date('now')) - strftime('%Y', date_of_birth) <= 3").where(status: [0, 1])
+      Animal.where("date_part('year', age(date_of_birth)) >= 1 AND date_part('year', age(date_of_birth)) < 3").where(status: [0, 1])
     else
-      Animal.where(" strftime(date('now')) - strftime('%Y', date_of_birth) >= 3").where(status: [0, 1])
+      Animal.where("date_part('year', age(date_of_birth)) >= 3").where(status: [0, 1])
     end
   end
 
