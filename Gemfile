@@ -57,6 +57,7 @@ gem "font-awesome-rails"
 
 gem "carrierwave", github: "carrierwaveuploader/carrierwave"
 gem "mini_magick"
+gem "fog-aws"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

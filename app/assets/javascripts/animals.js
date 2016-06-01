@@ -19,7 +19,6 @@ setModalParameter = function(id) {
                 }
             },
             error: function(result) {
-                alert("ERROR: " + result)
             }
         });
     });

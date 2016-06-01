@@ -181,9 +181,9 @@ class Animal < ActiveRecord::Base
   def entry_date_and_date_of_birth
     if !entry_date.nil? && !date_of_birth.nil?
       now = DateTime.now.to_date
-      if now <= date_of_birth
+      if now < date_of_birth
         errors.add(:date_of_birth, "cannot be in the future")
-      elsif now <= entry_date
+      elsif now < entry_date
         errors.add(:entry_date, "cannot be in the future")
       end
     end
