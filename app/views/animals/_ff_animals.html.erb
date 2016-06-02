@@ -65,7 +65,7 @@
                         edit_animal_path(animal), :class => 'btn btn-default btn-xs' %>
             <%= link_to t('.destroy', :default => t("helpers.links.destroy")), animal_path(animal.id), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs
                   btn-danger' %>
-            <% if animal.status == 2 %>
+            <% if animal.status == 1 %>
                 <%= link_to 'Return', return_animal_to_shelter_path(animal), :class => 'btn btn-primary btn-xs' %>
             <% end %>
             <% if animal.endangered? %>
