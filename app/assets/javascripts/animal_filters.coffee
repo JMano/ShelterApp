@@ -26,7 +26,7 @@ set_filtered_animals = ->
   age_filter = $('#age_filters').val();
   animal_type_filter = $('#animal_type_filters').val();
   $.ajax
-    type: 'POST'
+    type: 'GET'
     url: '/animals/filters'
     dataType: 'json'
     data:

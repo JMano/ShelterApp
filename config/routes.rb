@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
   get 'dogs' => 'animals#list_dogs', as: :animals_dogs
   get 'cats' => 'animals#list_cats', as: :animals_cats
-  post 'animals/filters' => 'animals#filters', as: :animal_filters
+  get 'animals/filters' => 'animals#filters', as: :animal_filters
   post  'requests/all'  =>            'requests#update_all', as: :update_all_request
   post  'requests/:id'  =>            'requests#update', as: :update_request
   get 'return_animal/:id' => 'animals#return', as: :return_animal_to_shelter
